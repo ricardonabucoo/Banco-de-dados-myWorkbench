@@ -1,0 +1,24 @@
+{
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": [
+            "nome",
+            "ano_fundacao",
+            "cidade"
+        ],
+        "properties": {
+            "nome": {
+                "bsonType": "string",
+                "maxLength": 100
+            },
+            "ano_fundacao": {
+                "bsonType": "int",
+                "minimum": 1801
+            },
+            "cidade": {
+                "bsonType": "string",
+                "maxLength": 100
+            }
+        }
+    }
+}

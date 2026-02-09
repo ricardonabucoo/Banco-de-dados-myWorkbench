@@ -1,0 +1,76 @@
+$jsonSchema:
+  bsonType: object
+  required:
+    - nome
+    - ano
+    - times
+    - jogos
+    - classificacao
+  additionalProperties: false
+  properties:
+    nome:
+      bsonType: string
+      maxLength: 100
+
+    ano:
+      bsonType: int
+      minimum: 1801
+      maximum: 2100
+
+    times:
+      bsonType: array
+      uniqueItems: true
+      items:
+        bsonType: objectId
+
+    jogos:
+      bsonType: array
+      items:
+        bsonType: object
+        required:
+          - local
+          - data_jogo
+          - placar_mandante
+          - placar_visitante
+          - mandante
+          - visitante
+        additionalProperties: false
+        properties:
+          local:
+            bsonType: string
+            maxLength: 100
+          data_jogo:
+            bsonType: date
+          placar_mandante:
+            bsonType: int
+            minimum: 0
+          placar_visitante:
+            bsonType: int
+            minimum: 0
+          mandante:
+            bsonType: objectId
+          visitante:
+            bsonType: objectId
+
+    classificacao:
+      bsonType: array
+      items:
+        bsonType: object
+        required:
+          - time
+          - pontos
+          - qnt_jogos
+          - saldo_gols
+        additionalProperties: false
+        properties:
+          time:
+            bsonType: objectId
+          pontos:
+            bsonType: int
+            minimum: 0
+          qnt_jogos:
+            bsonType: int
+            minimum: 0
+          saldo_gols:
+            bsonType: int
+

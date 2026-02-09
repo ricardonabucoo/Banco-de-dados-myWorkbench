@@ -1,0 +1,54 @@
+{
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": [
+            "time_contratado"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "time_contratado": {
+                "bsonType": "objectId"
+            },
+            "patrocinadores": {
+                "bsonType": "array",
+                "uniqueItems": true,
+                "items": {
+                    "bsonType": "object",
+                    "required": [
+                        "cnpj",
+                        "nome",
+                        "razao_social",
+                        "valor",
+                        "data_contrato",
+                        "data_contrato_fim"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "cnpj": {
+                            "bsonType": "string",
+                            "pattern": "^[0-9]{14}$"
+                        },
+                        "nome": {
+                            "bsonType": "string",
+                            "maxLength": 100
+                        },
+                        "razao_social": {
+                            "bsonType": "string",
+                            "maxLength": 100
+                        },
+                        "valor": {
+                            "bsonType": "double",
+                            "minimum": 0
+                        },
+                        "data_contrato": {
+                            "bsonType": "date"
+                        },
+                        "data_contrato_fim": {
+                            "bsonType": "date"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

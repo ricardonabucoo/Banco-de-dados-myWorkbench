@@ -1,0 +1,48 @@
+$jsonSchema:
+  bsonType: object
+  required:
+    - data_criacao
+    - exercicios
+    - jog_contratado
+    - medico
+
+  additionalProperties: false
+
+  properties:
+    data_criacao:
+      bsonType: date
+
+    jog_contratado:
+      bsonType: objectId
+
+    medico:
+      bsonType: objectId
+
+    exercicios:
+      bsonType: array
+      minItems: 1
+      items:
+        bsonType: object
+        required:
+          - nome
+          - grupo
+          - series
+          - repeticoes
+        additionalProperties: false
+        properties:
+          nome:
+            bsonType: string
+            maxLength: 100
+          grupo:
+            bsonType: string
+            enum:
+              - GrandesGrupos
+              - MediosGrupos
+              - PequenosGrupos
+          series:
+            bsonType: int
+            minimum: 1
+          repeticoes:
+            bsonType: int
+            minimum: 1
+

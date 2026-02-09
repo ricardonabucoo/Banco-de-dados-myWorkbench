@@ -1,0 +1,38 @@
+{
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": [
+            "tipo",
+            "minuto",
+            "arbitro",
+            "jogador",
+            "jogo"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "tipo": {
+                "bsonType": "string",
+                "enum": [
+                    "cartao_amarelo",
+                    "cartao_vermelho",
+                    "falta",
+                    "penalti"
+                ]
+            },
+            "minuto": {
+                "bsonType": "int",
+                "minimum": 0,
+                "maximum": 130
+            },
+            "arbitro": {
+                "bsonType": "objectId"
+            },
+            "jogador": {
+                "bsonType": "objectId"
+            },
+            "jogo": {
+                "bsonType": "objectId"
+            }
+        }
+    }
+}

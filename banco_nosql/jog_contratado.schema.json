@@ -1,0 +1,21 @@
+ {
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": [
+            "id_jogador",
+            "inicio_contrato",
+            "fim_contrato"
+        ],
+        "properties": {
+            "id_jogador": {
+                "bsonType": "objectId"
+            },
+            "inicio_contrato": {
+                "bsonType": "date"
+            },
+            "fim_contrato": {
+                "bsonType": "date"
+            }
+        }
+    }
+}

@@ -1,0 +1,187 @@
+{
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": [
+            "nome",
+            "tipo"
+        ],
+        "additionalProperties": false,
+        "properties": {
+            "nome": {
+                "bsonType": "string",
+                "minLength": 1,
+                "maxLength": 100
+            },
+            "tipo": {
+                "bsonType": "string",
+                "enum": [
+                    "medico",
+                    "arbitro",
+                    "tecnico",
+                    "jogador"
+                ]
+            },
+            "data_nascimento": {
+                "bsonType": "date"
+            },
+            "telefones": {
+                "bsonType": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                    "bsonType": "object",
+                    "required": [
+                        "numero"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "numero": {
+                            "bsonType": "string",
+                            "minLength": 8,
+                            "maxLength": 20,
+                            "pattern": "^[0-9()+\\- ]+$"
+                        }
+                    }
+                }
+            },
+            "enderecos": {
+                "bsonType": "array",
+                "minItems": 1,
+                "items": {
+                    "bsonType": "object",
+                    "required": [
+                        "numero",
+                        "bairro",
+                        "cidade"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "logradouro": {
+                            "bsonType": "string",
+                            "maxLength": 100
+                        },
+                        "numero": {
+                            "bsonType": "string",
+                            "maxLength": 10
+                        },
+                        "bairro": {
+                            "bsonType": "string",
+                            "maxLength": 50
+                        },
+                        "cidade": {
+                            "bsonType": "string",
+                            "maxLength": 50
+                        },
+                        "uf": {
+                            "bsonType": "string",
+                            "pattern": "^[A-Z]{2}$"
+                        }
+                    }
+                }
+            },
+            "crm": {
+                "bsonType": "string",
+                "minLength": 4,
+                "maxLength": 20
+            },
+            "especialidade": {
+                "bsonType": "string",
+                "maxLength": 50
+            },
+            "categoria": {
+                "bsonType": "string",
+                "enum": [
+                    "estadual",
+                    "nacional",
+                    "internacional"
+                ]
+            },
+            "federacao": {
+                "bsonType": "string",
+                "maxLength": 50
+            },
+            "licenca": {
+                "bsonType": "string",
+                "maxLength": 30
+            },
+            "anos_experiencia": {
+                "bsonType": "int",
+                "minimum": 0,
+                "maximum": 60
+            },
+            "posicao": {
+                "bsonType": "string",
+                "enum": [
+                    "goleiro",
+                    "zagueiro",
+                    "lateral",
+                    "volante",
+                    "meia",
+                    "atacante"
+                ]
+            },
+            "altura": {
+                "bsonType": "double",
+                "minimum": 1.2,
+                "maximum": 2.5
+            },
+            "peso": {
+                "bsonType": "double",
+                "minimum": 30,
+                "maximum": 200
+            },
+            "time": {
+                "bsonType": "string",
+                "maxLength": 60
+            }
+        },
+        "oneOf": [
+            {
+                "properties": {
+                    "tipo": {
+                        "const": "medico"
+                    }
+                },
+                "required": [
+                    "crm",
+                    "especialidade"
+                ]
+            },
+            {
+                "properties": {
+                    "tipo": {
+                        "const": "arbitro"
+                    }
+                },
+                "required": [
+                    "categoria",
+                    "federacao"
+                ]
+            },
+            {
+                "properties": {
+                    "tipo": {
+                        "const": "tecnico"
+                    }
+                },
+                "required": [
+                    "licenca",
+                    "anos_experiencia"
+                ]
+            },
+            {
+                "properties": {
+                    "tipo": {
+                        "const": "jogador"
+                    }
+                },
+                "required": [
+                    "posicao",
+                    "altura",
+                    "peso",
+                    "time"
+                ]
+            }
+        ]
+    }
+}
