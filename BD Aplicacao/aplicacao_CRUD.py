@@ -44,7 +44,7 @@ class AppGestaoEsportiva:
         self.setup_tab_empresa()
         self.setup_tab_patrocinio()
 
-    # ABA 1: TIME  com Auto-Meus_Times)
+    # ABA 1: TIME  
     def setup_tab_time(self):
         frame_form = ttk.LabelFrame(self.tab_time, text="Dados do Time")
         frame_form.pack(fill='x', padx=10, pady=5)
@@ -126,7 +126,7 @@ class AppGestaoEsportiva:
         if conn:
             try:
                 cursor = conn.cursor()
-                # 1º: Deleta de meus_times (isso resolve o erro da sua imagem)
+                # 1º: Deleta de meus_times 
                 cursor.execute("DELETE FROM meus_times WHERE id_time=%s", (self.entry_time_id.get(),))
                 # 2º: Deleta de time
                 cursor.execute("DELETE FROM time WHERE id_time=%s", (self.entry_time_id.get(),))
@@ -138,7 +138,7 @@ class AppGestaoEsportiva:
             finally:
                 conn.close()
 
-    # ABA 2: EMPRESA )
+    # ABA 2: EMPRESA 
     def setup_tab_empresa(self):
         frame_form = ttk.LabelFrame(self.tab_empresa, text="Dados da Empresa")
         frame_form.pack(fill='x', padx=10, pady=5)
@@ -222,7 +222,7 @@ class AppGestaoEsportiva:
             finally:
                 conn.close()
 
-    # ABA 3: PATROCÍNIO (C R U D Usando ID_TIME)
+    # ABA 3: PATROCÍNIO 
     def setup_tab_patrocinio(self):
         frame_form = ttk.LabelFrame(self.tab_patrocinio, text="Vincular Patrocínio")
         frame_form.pack(fill='x', padx=10, pady=5)
@@ -254,7 +254,7 @@ class AppGestaoEsportiva:
         ttk.Button(frame_btn, text="Atualizar", command=self.atualizar_pat).pack(side='left', padx=5)
         ttk.Button(frame_btn, text="Deletar", command=self.deletar_pat).pack(side='left', padx=5)
 
-        # Atualizado para listar o ID Time
+        # Atualizado para listar 
         self.tree_pat = ttk.Treeview(self.tab_patrocinio, columns=("ID Emp", "ID Time", "Valor R$", "Início", "Fim"), show='headings')
         for col in ("ID Emp", "ID Time", "Valor R$", "Início", "Fim"): self.tree_pat.heading(col, text=col)
         self.tree_pat.pack(fill='both', expand=True, padx=10, pady=10)
@@ -289,7 +289,7 @@ class AppGestaoEsportiva:
         conn = conectar()
         if conn:
             cursor = conn.cursor()
-            # O JOIN garante que o usuário veja o ID_TIME na tela, e não o id_meu_time
+           
             query = """SELECT p.id_empresa, mt.id_time, p.valor_contrato, p.data_contrato, p.data_contrato_fim 
                        FROM patrocinio p 
                        JOIN meus_times mt ON p.id_meu_time = mt.id_meu_time"""
@@ -338,4 +338,5 @@ class AppGestaoEsportiva:
 if __name__ == "__main__":
     root = tk.Tk()
     app = AppGestaoEsportiva(root)
+
     root.mainloop()
